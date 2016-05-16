@@ -3,6 +3,7 @@ package example.cs454.sunshine;
 import android.app.Application;
 
 import android.support.test.runner.AndroidJUnit4;
+import android.test.AndroidTestCase;
 import android.test.ApplicationTestCase;
 import android.util.Log;
 
@@ -14,17 +15,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-
 /**
  *
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
  */
-@RunWith(AndroidJUnit4.class)
-public class ApplicationTest extends ApplicationTestCase<Application> {
-    public ApplicationTest() {
-        super(Application.class);
-    }
+//@RunWith(AndroidJUnit4.class)
+public class AndroidTest extends AndroidTestCase {
+
 
     public void runTest() throws JSONException {
         double max = getMaxTemperatureForDay("{'city':{'id':2523246,'name':'Santuario di Gibilmanna','coord':{'lon':14.01667,'lat':37.98333}," +
@@ -58,7 +55,5 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
 
         return max;
 
-
     }
-
 }

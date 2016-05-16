@@ -191,7 +191,7 @@ public class ForecastFragment extends Fragment {
                         Log.e("PlaceholderFragment", "Error closing stream", e);
                     }
                 }
-                Log.d("responseJSON", forecastJsonStr);
+
 
                 return result;
             }
