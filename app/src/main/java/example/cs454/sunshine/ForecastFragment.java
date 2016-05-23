@@ -110,6 +110,12 @@ public class ForecastFragment extends Fragment {
         public static final String LOG_TAG = "fetchweathertask";
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.d(LOG_TAG, "onPreExecute called");
+        }
+
+        @Override
         protected String[] doInBackground(String... params) {
 
 // These two need to be declared outside the try/catch
@@ -310,6 +316,7 @@ public class ForecastFragment extends Fragment {
             weatherList = new ArrayList<>(Arrays.asList(strings));
             mAdapter.clear();
             mAdapter.addAll(weatherList);
+            Log.d(LOG_TAG, "onPostExecute called");
 
         }
     }

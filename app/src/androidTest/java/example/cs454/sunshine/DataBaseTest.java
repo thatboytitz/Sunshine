@@ -10,7 +10,7 @@ import android.util.Log;
 import java.util.Map;
 import java.util.Set;
 
-import example.cs454.sunshine.data.Contract;
+import example.cs454.sunshine.data.WeatherContract;
 import example.cs454.sunshine.data.WeatherDbHelper;
 
 /**
@@ -35,19 +35,19 @@ public class DataBaseTest extends AndroidTestCase {
         //create a contentvalues with north pole information
 
         ContentValues cv = new ContentValues();
-        cv.put(Contract.LocationEntry.COLUMN_CITY_NAME, "North Pole");
-        cv.put(Contract.LocationEntry.COLUMN_LOCATION_SETTING, "Santa hourse");
-        cv.put(Contract.LocationEntry.COLUMN_COORD_LAT, "" + 90);
-        cv.put(Contract.LocationEntry.COLUMN_COORD_LONG, "" + 90);
+        cv.put(example.cs454.sunshine.data.WeatherContract.LocationEntry.COLUMN_CITY_NAME, "North Pole");
+        cv.put(example.cs454.sunshine.data.WeatherContract.LocationEntry.COLUMN_LOCATION_SETTING, "Santa hourse");
+        cv.put(example.cs454.sunshine.data.WeatherContract.LocationEntry.COLUMN_COORD_LAT, "" + 90);
+        cv.put(example.cs454.sunshine.data.WeatherContract.LocationEntry.COLUMN_COORD_LONG, "" + 90);
 
         Cursor cursor = null;
 
         try{
-            long locId = db.insert(Contract.LocationEntry.TABLE_NAME, null, cv);
+            long locId = db.insert(example.cs454.sunshine.data.WeatherContract.LocationEntry.TABLE_NAME, null, cv);
 
             assertTrue(locId != -1);
 
-            cursor = db.query(Contract.LocationEntry.TABLE_NAME, null, null, null, null, null, null);
+            cursor = db.query(example.cs454.sunshine.data.WeatherContract.LocationEntry.TABLE_NAME, null, null, null, null, null, null);
 
             assertTrue("No records", cursor.moveToFirst());
 
@@ -55,10 +55,10 @@ public class DataBaseTest extends AndroidTestCase {
 
             ContentValues weatherValues = TestUtilities.createWeatherValues(locId);
 
-            long weatherRowId = db.insert(Contract.WeatherEntry.TABLE_NAME, null, weatherValues);
+            long weatherRowId = db.insert(example.cs454.sunshine.data.WeatherContract.WeatherEntry.TABLE_NAME, null, weatherValues);
 
             Cursor weatherCursor = db.query(
-                    Contract.WeatherEntry.TABLE_NAME,  // Table to Query
+                    example.cs454.sunshine.data.WeatherContract.WeatherEntry.TABLE_NAME,  // Table to Query
                     null, // leaving "columns" null just returns all the columns.
                     null, // cols for "where" clause
                     null, // values for "where" clause
@@ -74,8 +74,8 @@ public class DataBaseTest extends AndroidTestCase {
         }catch(Exception e){
             Log.e("test", e.getMessage());
         }finally{
-            db.delete(Contract.LocationEntry.TABLE_NAME, null, null);
-            db.delete(Contract.WeatherEntry.TABLE_NAME, null, null);
+            db.delete(example.cs454.sunshine.data.WeatherContract.LocationEntry.TABLE_NAME, null, null);
+            db.delete(example.cs454.sunshine.data.WeatherContract.WeatherEntry.TABLE_NAME, null, null);
 
             if(cursor != null) cursor.close();
             if(db != null)db.close();
@@ -101,16 +101,16 @@ public class DataBaseTest extends AndroidTestCase {
 
     static ContentValues createWeatherValues(long locationRowId) {
         ContentValues weatherValues = new ContentValues();
-        weatherValues.put(Contract.WeatherEntry.COLUMN_LOC_KEY, locationRowId);
-        weatherValues.put(Contract.WeatherEntry.COLUMN_DATE, TEST_DATE);
-        weatherValues.put(Contract.WeatherEntry.COLUMN_DEGREES, 1.1);
-        weatherValues.put(Contract.WeatherEntry.COLUMN_HUMIDITY, 1.2);
-        weatherValues.put(Contract.WeatherEntry.COLUMN_PRESSURE, 1.3);
-        weatherValues.put(Contract.WeatherEntry.COLUMN_MAX_TEMP, 75);
-        weatherValues.put(Contract.WeatherEntry.COLUMN_MIN_TEMP, 65);
-        weatherValues.put(Contract.WeatherEntry.COLUMN_SHORT_DESC, "Asteroids");
-        weatherValues.put(Contract.WeatherEntry.COLUMN_WIND_SPEED, 5.5);
-        weatherValues.put(Contract.WeatherEntry.COLUMN_WEATHER_ID, 321);
+        weatherValues.put(example.cs454.sunshine.data.WeatherContract.WeatherEntry.COLUMN_LOC_KEY, locationRowId);
+        weatherValues.put(example.cs454.sunshine.data.WeatherContract.WeatherEntry.COLUMN_DATE, TEST_DATE);
+        weatherValues.put(example.cs454.sunshine.data.WeatherContract.WeatherEntry.COLUMN_DEGREES, 1.1);
+        weatherValues.put(WeatherContract.WeatherEntry.COLUMN_HUMIDITY, 1.2);
+        weatherValues.put(example.cs454.sunshine.data.WeatherContract.WeatherEntry.COLUMN_PRESSURE, 1.3);
+        weatherValues.put(example.cs454.sunshine.data.WeatherContract.WeatherEntry.COLUMN_MAX_TEMP, 75);
+        weatherValues.put(example.cs454.sunshine.data.WeatherContract.WeatherEntry.COLUMN_MIN_TEMP, 65);
+        weatherValues.put(example.cs454.sunshine.data.WeatherContract.WeatherEntry.COLUMN_SHORT_DESC, "Asteroids");
+        weatherValues.put(example.cs454.sunshine.data.WeatherContract.WeatherEntry.COLUMN_WIND_SPEED, 5.5);
+        weatherValues.put(example.cs454.sunshine.data.WeatherContract.WeatherEntry.COLUMN_WEATHER_ID, 321);
 
         return weatherValues;
     }
