@@ -103,14 +103,11 @@ public class WeatherContract {
 
         public static Uri buildWeatherLocation(String locationSetting) {
             return CONTENT_URI.buildUpon().appendPath(locationSetting).build();
-
         }
-
 
         public static Uri buildWeatherLocationWithStartDate(String locationSetting, long date) {
             long normalizedDate = normalizeDate(date);
             return CONTENT_URI.buildUpon().appendPath(locationSetting).appendQueryParameter(COLUMN_DATE, String.valueOf(normalizedDate)).build();
-
         }
 
         public static Uri buildWeatherLocationWithDate(String locationSetting, long date) {
