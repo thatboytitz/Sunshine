@@ -38,8 +38,6 @@ public class FetchWeatherTask extends AsyncTask<String, Void, Void> {
 
     private boolean DEBUG = true;
 
-
-
     /**
      * Helper method to handle insertion of a new location in the weather database.
      *
