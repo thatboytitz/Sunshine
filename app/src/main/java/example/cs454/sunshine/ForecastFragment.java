@@ -63,8 +63,7 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
 
 
 
-    public ForecastFragment() {
-    }
+    public ForecastFragment() {}
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -94,6 +93,7 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                //gets the cursor set at position
                 Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
 
                 if (cursor != null) {
