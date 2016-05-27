@@ -126,11 +126,6 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        //getWeather();
-    }
 
     public void getWeather() {
         FetchWeatherTask weatherTask = new FetchWeatherTask(getActivity());
@@ -138,6 +133,10 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
         weatherTask.execute(location);
     }
 
+    void onLocationChanged( ) {
+        getWeather();
+        getLoaderManager().restartLoader(FORECAST_LOADER, null, this);
+    }
 
     //Cursor loader callback methods
     @Override
